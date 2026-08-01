@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Atlas Business AI</title>
+    <meta name="description" content="Painel de controle do Atlas Business AI">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <!-- Overlay para mobile -->
+        <div class="menu-overlay" id="menuOverlay"></div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="8" fill="url(#logo-grad)"/>
+                    <path d="M6 24L16 6L26 24H6Z" stroke="white" stroke-width="2" fill="none" stroke-linejoin="round"/>
+                    <circle cx="16" cy="20" r="2" fill="white"/>
+                    <defs><linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient></defs>
+                </svg>
+                <span class="logo-text">Atlas<span style="background: var(--color-primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Business</span>AI</span>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Principal</div>
+                    <a href="dashboard.html" class="sidebar-link active">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                        Dashboard
+                    </a>
+                    <a href="#ferramentas" class="sidebar-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        Ferramentas
+                    </a>
+                    <a href="#historico" class="sidebar-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        Histórico
+                    </a>
+                    <a href="#favoritos" class="sidebar-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        Favoritos
+                    </a>
+                </div>
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Conta</div>
+                    <a href="#configuracoes" class="sidebar-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                        Configurações
+                    </a>
+                    <a href="#plano" class="sidebar-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        Plano
+                    </a>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="sidebar-user">
+                    <div class="sidebar-avatar" id="sidebarAvatar">U</div>
+                    <div class="sidebar-user-info">
+                        <div class="sidebar-user-name" id="sidebarUserName">Usuário</div>
+                        <div class="sidebar-user-plan" id="sidebarUserPlan">Plano Starter</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Conteúdo principal -->
+        <div class="main-content">
+            <!-- Topbar -->
+            <header class="topbar">
+                <button class="topbar-btn" id="mobileMenuBtn" aria-label="Menu">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                </button>
+                <div class="topbar-search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input type="text" placeholder="Pesquisar ferramentas..." aria-label="Pesquisar">
+                </div>
+                <div class="topbar-actions">
+                    <button class="topbar-btn" onclick="Dashboard.toggleTheme()" aria-label="Alternar tema" title="Alternar tema">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    </button>
+                    <a href="#notificacoes" class="topbar-btn" aria-label="Notificações">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                        <span class="topbar-notification-dot"></span>
+                    </a>
+                    <div class="topbar-profile" id="logoutBtn" title="Sair">
+                        <div class="sidebar-avatar" id="sidebarAvatarSmall" style="width:32px;height:32px;font-size:0.75rem;">U</div>
+                        <span style="font-size:0.85rem;font-weight:500;">Sair</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Conteúdo do Dashboard -->
+            <div class="welcome-card">
+                <h1 class="welcome-title">Olá, <span id="welcomeName">Usuário</span>! 👋</h1>
+                <p class="welcome-subtitle">Escolha uma ferramenta abaixo e transforme suas ideias em resultados profissionais com IA.</p>
+            </div>
+
+            <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:16px;">Acesso Rápido</h2>
+            <div class="quick-tools-grid">
+                <a href="tools/proposta-comercial.html" class="quick-tool-item">
+                    <div class="quick-tool-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    </div>
+                    <h4>Proposta Comercial</h4>
+                    <p>Criar nova</p>
+                </a>
+                <a href="tools/orcamentos.html" class="quick-tool-item">
+                    <div class="quick-tool-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="18" rx="2"/></svg>
+                    </div>
+                    <h4>Orçamento</h4>
+                    <p>Criar novo</p>
+                </a>
+                <a href="tools/posts.html" class="quick-tool-item">
+                    <div class="quick-tool-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/></svg>
+                    </div>
+                    <h4>Post Instagram</h4>
+                    <p>Criar novo</p>
+                </a>
+                <a href="tools/emails.html" class="quick-tool-item">
+                    <div class="quick-tool-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+                    </div>
+                    <h4>E-mail</h4>
+                    <p>Criar novo</p>
+                </a>
+            </div>
+
+            <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:16px;">Atividade Recente</h2>
+            <div class="history-list">
+                <div class="history-item">
+                    <div>
+                        <div class="history-item-title">Proposta Comercial - Empresa ABC</div>
+                        <div class="history-item-date">Hoje, 14:30</div>
+                    </div>
+                    <a href="#" class="history-item-action">Abrir</a>
+                </div>
+                <div class="history-item">
+                    <div>
+                        <div class="history-item-title">Orçamento - Serviços de TI</div>
+                        <div class="history-item-date">Ontem, 10:15</div>
+                    </div>
+                    <a href="#" class="history-item-action">Abrir</a>
+                </div>
+                <div class="history-item">
+                    <div>
+                        <div class="history-item-title">Post LinkedIn - Lançamento</div>
+                        <div class="history-item-date">22/07/2026</div>
+                    </div>
+                    <a href="#" class="history-item-action">Abrir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Atualiza nome do usuário no welcome card
+        (function() {
+            const user = JSON.parse(localStorage.getItem('atlas-user') || '{}');
+            if (user.name) {
+                document.getElementById('welcomeName').textContent = user.name.split(' ')[0];
+            }
+            // Atualiza avatares
+            if (user.name) {
+                const initials = user.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0,2);
+                const avatars = document.querySelectorAll('#sidebarAvatar, #sidebarAvatarSmall');
+                avatars.forEach(a => a.textContent = initials);
+                document.getElementById('sidebarUserName').textContent = user.name;
+            }
+        })();
+    </script>
+    <script src="../assets/js/dashboard.js"></script>
+</body>
+</html>
