@@ -1,0 +1,122 @@
+/* ============================================================
+   TOOLS CSS
+   Layout comum para todas as ferramentas
+   ============================================================ */
+
+.tool-page {
+    display: flex;
+    min-height: 100vh;
+}
+
+.tool-container {
+    flex: 1;
+    margin-left: 260px;
+    padding: 24px;
+    padding-top: 88px;
+    background: var(--color-bg-secondary);
+    min-height: 100vh;
+}
+
+.tool-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.tool-header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tool-layout {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.tool-form-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 28px;
+    position: sticky;
+    top: 100px;
+}
+
+.tool-result-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 28px;
+    min-height: 300px;
+}
+
+.tool-result-content {
+    white-space: pre-wrap;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--color-text);
+    min-height: 150px;
+    max-height: 600px;
+    overflow-y: auto;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    background: var(--color-bg);
+    margin-bottom: 20px;
+}
+
+.tool-result-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tool-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 40px;
+    color: var(--color-text-secondary);
+}
+
+.tool-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--color-text-tertiary);
+}
+
+.tool-empty svg {
+    margin: 0 auto 16px;
+    opacity: 0.3;
+}
+
+/* Responsivo */
+@media (max-width: 1024px) {
+    .tool-container {
+        margin-left: 0;
+        padding-top: 80px;
+    }
+    .tool-layout {
+        grid-template-columns: 1fr;
+    }
+    .tool-form-card {
+        position: static;
+    }
+}
+
+@media (max-width: 640px) {
+    .tool-container {
+        padding: 16px;
+        padding-top: 72px;
+    }
+    .tool-result-actions {
+        flex-direction: column;
+    }
+}
