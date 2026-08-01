@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criador de E-mails - Atlas Business AI</title>
+    <meta name="description" content="Crie e-mails profissionais de cobrança, negociação, agradecimento e pós-venda">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../../assets/css/tools.css">
+</head>
+<body>
+    <div class="tool-page">
+        <div class="menu-overlay" id="menuOverlay"></div>
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="8" fill="url(#logo-grad)"/>
+                    <path d="M6 24L16 6L26 24H6Z" stroke="white" stroke-width="2" fill="none" stroke-linejoin="round"/>
+                    <circle cx="16" cy="20" r="2" fill="white"/>
+                    <defs><linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient></defs>
+                </svg>
+                <span class="logo-text">Atlas<span style="background: var(--color-primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Business</span>AI</span>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Principal</div>
+                    <a href="../dashboard.html" class="sidebar-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                        Dashboard
+                    </a>
+                    <a href="#" class="sidebar-link active">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22 4 12 13 2 4"/></svg>
+                        E-mails
+                    </a>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="sidebar-user">
+                    <div class="sidebar-avatar" id="sidebarAvatar">U</div>
+                    <div class="sidebar-user-info">
+                        <div class="sidebar-user-name" id="sidebarUserName">Usuário</div>
+                        <div class="sidebar-user-plan">Plano Starter</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="tool-container">
+            <header class="topbar" style="position:fixed; top:0; left:260px; right:0; z-index:90;">
+                <button class="topbar-btn" id="mobileMenuBtn" aria-label="Menu">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                </button>
+                <span style="font-weight:600;">Ferramenta: Criador de E-mails</span>
+                <div class="topbar-actions" style="margin-left:auto;">
+                    <button class="topbar-btn" onclick="Tools.goToDashboard()" title="Voltar ao Dashboard">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                    </button>
+                </div>
+            </header>
+
+            <div class="tool-header" style="margin-top:64px;">
+                <h1>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-primary);"><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+                    Criador de E-mails Profissionais
+                </h1>
+            </div>
+
+            <div class="tool-layout">
+                <div class="tool-form-card">
+                    <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:20px;">Configuração do E-mail</h2>
+                    <form id="emailForm" novalidate>
+                        <div class="form-group">
+                            <label for="tipo" class="form-label">Tipo de E-mail *</label>
+                            <select id="tipo" required>
+                                <option value="">Selecione...</option>
+                                <option value="cobranca">Cobrança</option>
+                                <option value="negociacao">Negociação</option>
+                                <option value="agradecimento">Agradecimento</option>
+                                <option value="posvenda">Pós-venda</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cliente" class="form-label">Nome do Cliente *</label>
+                            <input type="text" id="cliente" placeholder="Ex: João Silva" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="empresa" class="form-label">Sua Empresa *</label>
+                            <input type="text" id="empresa" placeholder="Ex: Atlas Tecnologia" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="detalhes" class="form-label">Detalhes/Contexto *</label>
+                            <textarea id="detalhes" placeholder="Ex: Fatura #123, valor R$500, vencimento 10/08" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" id="gerarBtn">Gerar E-mail</button>
+                    </form>
+                </div>
+
+                <div class="tool-result-card" id="resultCard">
+                    <div class="tool-empty" id="emptyState">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+                        <p>Preencha os dados e gere um e-mail profissional.</p>
+                    </div>
+                    <div class="tool-result-content" id="resultContent" style="display:none;"></div>
+                    <div class="tool-result-actions" id="resultActions" style="display:none;">
+                        <button class="btn btn-outline btn-sm" onclick="copiarResultado()">Copiar</button>
+                        <button class="btn btn-outline btn-sm" onclick="baixarTXT()">Baixar TXT</button>
+                        <button class="btn btn-outline btn-sm" onclick="novoEmail()">Novo E-mail</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../assets/js/tools.js"></script>
+    <script>
+        Tools.init();
+        let resultadoGerado = '';
+
+        document.getElementById('emailForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const tipo = document.getElementById('tipo').value;
+            const cliente = document.getElementById('cliente').value.trim();
+            const empresa = document.getElementById('empresa').value.trim();
+            const detalhes = document.getElementById('detalhes').value.trim();
+
+            if (!tipo || !cliente || !empresa || !detalhes) {
+                Tools.showToast('Preencha todos os campos.', 'error');
+                return;
+            }
+
+            const stopLoading = Tools.showLoading(document.getElementById('gerarBtn'));
+
+            setTimeout(() => {
+                let assunto = '';
+                let corpo = '';
+
+                if (tipo === 'cobranca') {
+                    assunto = `Lembrete de Cobrança - ${empresa}`;
+                    corpo = `Prezado(a) ${cliente},\n\nEsperamos que esteja bem. Verificamos que há uma pendência em aberto referente a:\n\n${detalhes}\n\nPedimos a gentileza de regularizar o pagamento o mais breve possível. Caso já tenha efetuado, desconsidere esta mensagem.\n\nEstamos à disposição para esclarecimentos.\nAtenciosamente,\nEquipe ${empresa}`;
+                } else if (tipo === 'negociacao') {
+                    assunto = `Proposta de Negociação - ${empresa}`;
+                    corpo = `Prezado(a) ${cliente},\n\nConforme conversamos, segue nossa proposta:\n\n${detalhes}\n\nAguardamos seu retorno e ficamos à disposição para ajustes.\nAtenciosamente,\nEquipe ${empresa}`;
+                } else if (tipo === 'agradecimento') {
+                    assunto = `Agradecimento - ${empresa}`;
+                    corpo = `Prezado(a) ${cliente},\n\nGostaríamos de agradecer por ${detalhes}.\n\nSua parceria é muito importante para nós. Conte sempre com a ${empresa}.\n\nAtenciosamente,\nEquipe ${empresa}`;
+                } else if (tipo === 'posvenda') {
+                    assunto = `Pós-venda - ${empresa}`;
+                    corpo = `Prezado(a) ${cliente},\n\nEsperamos que esteja satisfeito(a) com sua aquisição/contratação. ${detalhes}\n\nEstamos à disposição para qualquer dúvida ou suporte adicional.\n\nAtenciosamente,\nEquipe ${empresa}`;
+                }
+
+                resultadoGerado = `Assunto: ${assunto}\n\n${corpo}`;
+
+                document.getElementById('emptyState').style.display = 'none';
+                document.getElementById('resultContent').style.display = 'block';
+                document.getElementById('resultContent').textContent = resultadoGerado;
+                document.getElementById('resultActions').style.display = 'flex';
+
+                stopLoading();
+                Tools.showToast('E-mail gerado!', 'success');
+            }, 800);
+        });
+
+        function copiarResultado() { if (resultadoGerado) Tools.copyToClipboard(resultadoGerado); }
+        function baixarTXT() { if (resultadoGerado) Tools.downloadFile(resultadoGerado, 'email.txt'); }
+        function novoEmail() {
+            document.getElementById('emailForm').reset();
+            document.getElementById('emptyState').style.display = 'block';
+            document.getElementById('resultContent').style.display = 'none';
+            document.getElementById('resultActions').style.display = 'none';
+            resultadoGerado = '';
+        }
+    </script>
+</body>
+</html>
