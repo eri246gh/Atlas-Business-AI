@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responder Avaliações - Atlas Business AI</title>
+    <meta name="description" content="Gerencie sua reputação respondendo avaliações do Google, Facebook e iFood">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../../assets/css/tools.css">
+</head>
+<body>
+    <div class="tool-page">
+        <div class="menu-overlay" id="menuOverlay"></div>
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="8" fill="url(#logo-grad)"/>
+                    <path d="M6 24L16 6L26 24H6Z" stroke="white" stroke-width="2" fill="none" stroke-linejoin="round"/>
+                    <circle cx="16" cy="20" r="2" fill="white"/>
+                    <defs><linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient></defs>
+                </svg>
+                <span class="logo-text">Atlas<span style="background: var(--color-primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Business</span>AI</span>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Principal</div>
+                    <a href="../dashboard.html" class="sidebar-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                        Dashboard
+                    </a>
+                    <a href="#" class="sidebar-link active">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        Avaliações
+                    </a>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="sidebar-user">
+                    <div class="sidebar-avatar" id="sidebarAvatar">U</div>
+                    <div class="sidebar-user-info">
+                        <div class="sidebar-user-name" id="sidebarUserName">Usuário</div>
+                        <div class="sidebar-user-plan">Plano Starter</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="tool-container">
+            <header class="topbar" style="position:fixed; top:0; left:260px; right:0; z-index:90;">
+                <button class="topbar-btn" id="mobileMenuBtn" aria-label="Menu">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                </button>
+                <span style="font-weight:600;">Ferramenta: Responder Avaliações</span>
+                <div class="topbar-actions" style="margin-left:auto;">
+                    <button class="topbar-btn" onclick="Tools.goToDashboard()" title="Voltar ao Dashboard">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                    </button>
+                </div>
+            </header>
+
+            <div class="tool-header" style="margin-top:64px;">
+                <h1>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-primary);"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    Responder Avaliações
+                </h1>
+            </div>
+
+            <div class="tool-layout">
+                <div class="tool-form-card">
+                    <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:20px;">Contexto da Avaliação</h2>
+                    <form id="avaliacaoForm" novalidate>
+                        <div class="form-group">
+                            <label for="plataforma" class="form-label">Plataforma *</label>
+                            <select id="plataforma" required>
+                                <option value="">Selecione...</option>
+                                <option value="google">Google</option>
+                                <option value="facebook">Facebook</option>
+                                <option value="ifood">iFood</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tipo" class="form-label">Tipo de Avaliação *</label>
+                            <select id="tipo" required>
+                                <option value="">Selecione...</option>
+                                <option value="positiva">Positiva (elogio)</option>
+                                <option value="negativa">Negativa (crítica)</option>
+                                <option value="neutra">Neutra</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cliente" class="form-label">Nome do Cliente</label>
+                            <input type="text" id="cliente" placeholder="Ex: Carlos">
+                        </div>
+                        <div class="form-group">
+                            <label for="comentario" class="form-label">Resumo do comentário *</label>
+                            <textarea id="comentario" placeholder="Ex: O atendimento foi rápido mas o produto veio com defeito." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="empresa" class="form-label">Nome da sua Empresa *</label>
+                            <input type="text" id="empresa" placeholder="Ex: Loja ABC" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" id="gerarBtn">Gerar Resposta</button>
+                    </form>
+                </div>
+
+                <div class="tool-result-card" id="resultCard">
+                    <div class="tool-empty" id="emptyState">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <p>Preencha os dados e gere uma resposta adequada.</p>
+                    </div>
+                    <div class="tool-result-content" id="resultContent" style="display:none;"></div>
+                    <div class="tool-result-actions" id="resultActions" style="display:none;">
+                        <button class="btn btn-outline btn-sm" onclick="copiarResultado()">Copiar</button>
+                        <button class="btn btn-outline btn-sm" onclick="baixarTXT()">Baixar TXT</button>
+                        <button class="btn btn-outline btn-sm" onclick="novaAvaliacao()">Nova Resposta</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../assets/js/tools.js"></script>
+    <script>
+        Tools.init();
+        let resultadoGerado = '';
+
+        document.getElementById('avaliacaoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const plataforma = document.getElementById('plataforma').value;
+            const tipo = document.getElementById('tipo').value;
+            const cliente = document.getElementById('cliente').value.trim() || 'Cliente';
+            const comentario = document.getElementById('comentario').value.trim();
+            const empresa = document.getElementById('empresa').value.trim();
+
+            if (!plataforma || !tipo || !comentario || !empresa) {
+                Tools.showToast('Preencha todos os campos obrigatórios.', 'error');
+                return;
+            }
+
+            const stopLoading = Tools.showLoading(document.getElementById('gerarBtn'));
+
+            setTimeout(() => {
+                let resposta = '';
+                if (tipo === 'positiva') {
+                    resposta = `Olá ${cliente}! Muito obrigado pela avaliação positiva! 😊\nFicamos felizes em saber que sua experiência foi boa. ${empresa} está sempre à disposição.`;
+                } else if (tipo === 'negativa') {
+                    resposta = `Olá ${cliente}, agradecemos seu feedback.\nLamentamos que sua experiência não tenha sido a ideal. ${empresa} leva muito a sério cada comentário e gostaríamos de entender melhor o ocorrido para resolver. Por favor, entre em contato conosco diretamente.`;
+                } else {
+                    resposta = `Olá ${cliente}, agradecemos por compartilhar sua opinião. A ${empresa} está sempre buscando melhorar e seu comentário é muito importante.`;
+                }
+                resposta += `\n\nAtenciosamente,\nEquipe ${empresa}`;
+
+                resultadoGerado = `📌 RESPOSTA PARA ${plataforma.toUpperCase()}\n\n${resposta}`;
+
+                document.getElementById('emptyState').style.display = 'none';
+                document.getElementById('resultContent').style.display = 'block';
+                document.getElementById('resultContent').textContent = resultadoGerado;
+                document.getElementById('resultActions').style.display = 'flex';
+
+                stopLoading();
+                Tools.showToast('Resposta gerada!', 'success');
+            }, 800);
+        });
+
+        function copiarResultado() { if (resultadoGerado) Tools.copyToClipboard(resultadoGerado); }
+        function baixarTXT() { if (resultadoGerado) Tools.downloadFile(resultadoGerado, 'avaliacao.txt'); }
+        function novaAvaliacao() {
+            document.getElementById('avaliacaoForm').reset();
+            document.getElementById('emptyState').style.display = 'block';
+            document.getElementById('resultContent').style.display = 'none';
+            document.getElementById('resultActions').style.display = 'none';
+            resultadoGerado = '';
+        }
+    </script>
+</body>
+</html>
