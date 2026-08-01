@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campanhas de Marketing - Atlas Business AI</title>
+    <meta name="description" content="Crie campanhas para Google Ads, Facebook Ads, Instagram Ads e E-mail Marketing">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../../assets/css/tools.css">
+</head>
+<body>
+    <div class="tool-page">
+        <div class="menu-overlay" id="menuOverlay"></div>
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="8" fill="url(#logo-grad)"/>
+                    <path d="M6 24L16 6L26 24H6Z" stroke="white" stroke-width="2" fill="none" stroke-linejoin="round"/>
+                    <circle cx="16" cy="20" r="2" fill="white"/>
+                    <defs><linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient></defs>
+                </svg>
+                <span class="logo-text">Atlas<span style="background: var(--color-primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Business</span>AI</span>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Principal</div>
+                    <a href="../dashboard.html" class="sidebar-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                        Dashboard
+                    </a>
+                    <a href="#" class="sidebar-link active">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+                        Campanhas
+                    </a>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="sidebar-user">
+                    <div class="sidebar-avatar" id="sidebarAvatar">U</div>
+                    <div class="sidebar-user-info">
+                        <div class="sidebar-user-name" id="sidebarUserName">Usuário</div>
+                        <div class="sidebar-user-plan">Plano Starter</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="tool-container">
+            <header class="topbar" style="position:fixed; top:0; left:260px; right:0; z-index:90;">
+                <button class="topbar-btn" id="mobileMenuBtn" aria-label="Menu">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                </button>
+                <span style="font-weight:600;">Ferramenta: Campanhas de Marketing</span>
+                <div class="topbar-actions" style="margin-left:auto;">
+                    <button class="topbar-btn" onclick="Tools.goToDashboard()" title="Voltar ao Dashboard">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                    </button>
+                </div>
+            </header>
+
+            <div class="tool-header" style="margin-top:64px;">
+                <h1>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-primary);"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+                    Campanhas de Marketing
+                </h1>
+            </div>
+
+            <div class="tool-layout">
+                <div class="tool-form-card">
+                    <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:20px;">Configuração da Campanha</h2>
+                    <form id="campanhaForm" novalidate>
+                        <div class="form-group">
+                            <label for="canal" class="form-label">Canal *</label>
+                            <select id="canal" required>
+                                <option value="">Selecione...</option>
+                                <option value="google">Google Ads</option>
+                                <option value="facebook">Facebook Ads</option>
+                                <option value="instagram">Instagram Ads</option>
+                                <option value="email">E-mail Marketing</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="objetivo" class="form-label">Objetivo *</label>
+                            <input type="text" id="objetivo" placeholder="Ex: Vendas, leads, reconhecimento" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="produto" class="form-label">Produto/Serviço *</label>
+                            <input type="text" id="produto" placeholder="Ex: Curso online de vendas" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="publico" class="form-label">Público-alvo *</label>
+                            <input type="text" id="publico" placeholder="Ex: Donos de pequenas empresas" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="orcamento" class="form-label">Orçamento (R$)</label>
+                            <input type="number" id="orcamento" min="0" step="0.01" placeholder="Ex: 500">
+                        </div>
+                        <div class="form-group">
+                            <label for="diferencial" class="form-label">Diferencial</label>
+                            <textarea id="diferencial" placeholder="Ex: 50% de desconto na primeira compra" rows="2"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" id="gerarBtn">Gerar Campanha</button>
+                    </form>
+                </div>
+
+                <div class="tool-result-card" id="resultCard">
+                    <div class="tool-empty" id="emptyState">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/></svg>
+                        <p>Configure sua campanha e veja o resultado.</p>
+                    </div>
+                    <div class="tool-result-content" id="resultContent" style="display:none;"></div>
+                    <div class="tool-result-actions" id="resultActions" style="display:none;">
+                        <button class="btn btn-outline btn-sm" onclick="copiarResultado()">Copiar</button>
+                        <button class="btn btn-outline btn-sm" onclick="baixarTXT()">Baixar TXT</button>
+                        <button class="btn btn-outline btn-sm" onclick="novaCampanha()">Nova Campanha</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../assets/js/tools.js"></script>
+    <script>
+        Tools.init();
+
+        let resultadoGerado = '';
+
+        document.getElementById('campanhaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const canal = document.getElementById('canal').value;
+            const objetivo = document.getElementById('objetivo').value.trim();
+            const produto = document.getElementById('produto').value.trim();
+            const publico = document.getElementById('publico').value.trim();
+            const orcamento = document.getElementById('orcamento').value.trim();
+            const diferencial = document.getElementById('diferencial').value.trim();
+
+            if (!canal || !objetivo || !produto || !publico) {
+                Tools.showToast('Preencha os campos obrigatórios.', 'error');
+                return;
+            }
+
+            const stopLoading = Tools.showLoading(document.getElementById('gerarBtn'));
+
+            setTimeout(() => {
+                let texto = '';
+                if (canal === 'google') {
+                    texto = `📢 CAMPANHA GOOGLE ADS\n\n`;
+                    texto += `Objetivo: ${objetivo}\nProduto: ${produto}\nPúblico: ${publico}\n`;
+                    texto += orcamento ? `Orçamento: R$${orcamento}\n` : '';
+                    texto += `\nTítulo do Anúncio (máx 30 caracteres): ${produto.substring(0,30)}\n`;
+                    texto += `Descrição (máx 90 caracteres): ${objetivo} com ${produto}. ${diferencial ? diferencial.substring(0,60) : 'Aproveite!'}\n`;
+                    texto += `URL de destino: www.seusite.com/${produto.replace(/\s/g, '-').toLowerCase()}\n`;
+                } else if (canal === 'facebook' || canal === 'instagram') {
+                    texto = `📱 CAMPANHA ${canal.toUpperCase()} ADS\n\n`;
+                    texto += `Objetivo: ${objetivo}\nProduto: ${produto}\nPúblico: ${publico}\n`;
+                    texto += orcamento ? `Orçamento: R$${orcamento}\n` : '';
+                    texto += `\nTexto do Anúncio:\n"${objetivo} com ${produto}? ${diferencial ? diferencial : 'Descubra como!'} ${publico}, esta é a sua chance!"\n`;
+                    texto += `CTA: Saiba Mais\n`;
+                } else if (canal === 'email') {
+                    texto = `📧 CAMPANHA E-MAIL MARKETING\n\n`;
+                    texto += `Assunto: ${objetivo} - ${produto}\n\n`;
+                    texto += `Olá, ${publico}!\n\n`;
+                    texto += `Apresentamos ${produto}. ${diferencial ? diferencial : 'Veja como pode ajudar você.'}\n`;
+                    texto += `Não perca tempo! ${objetivo}.\n\n`;
+                    texto += `Clique aqui e aproveite: [link do site]\n\n`;
+                    texto += `Atenciosamente,\nEquipe Atlas`;
+                }
+
+                resultadoGerado = texto;
+
+                document.getElementById('emptyState').style.display = 'none';
+                document.getElementById('resultContent').style.display = 'block';
+                document.getElementById('resultContent').textContent = resultadoGerado;
+                document.getElementById('resultActions').style.display = 'flex';
+
+                stopLoading();
+                Tools.showToast('Campanha gerada!', 'success');
+            }, 1000);
+        });
+
+        function copiarResultado() { if (resultadoGerado) Tools.copyToClipboard(resultadoGerado); }
+        function baixarTXT() { if (resultadoGerado) Tools.downloadFile(resultadoGerado, 'campanha.txt'); }
+        function novaCampanha() {
+            document.getElementById('campanhaForm').reset();
+            document.getElementById('emptyState').style.display = 'block';
+            document.getElementById('resultContent').style.display = 'none';
+            document.getElementById('resultActions').style.display = 'none';
+            resultadoGerado = '';
+        }
+    </script>
+</body>
+</html>
