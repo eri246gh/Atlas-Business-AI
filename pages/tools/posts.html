@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criador de Posts - Atlas Business AI</title>
+    <meta name="description" content="Crie posts profissionais para Instagram, Facebook e LinkedIn">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../../assets/css/tools.css">
+</head>
+<body>
+    <div class="tool-page">
+        <div class="menu-overlay" id="menuOverlay"></div>
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="8" fill="url(#logo-grad)"/>
+                    <path d="M6 24L16 6L26 24H6Z" stroke="white" stroke-width="2" fill="none" stroke-linejoin="round"/>
+                    <circle cx="16" cy="20" r="2" fill="white"/>
+                    <defs><linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient></defs>
+                </svg>
+                <span class="logo-text">Atlas<span style="background: var(--color-primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Business</span>AI</span>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Principal</div>
+                    <a href="../dashboard.html" class="sidebar-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                        Dashboard
+                    </a>
+                    <a href="#" class="sidebar-link active">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                        Posts
+                    </a>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="sidebar-user">
+                    <div class="sidebar-avatar" id="sidebarAvatar">U</div>
+                    <div class="sidebar-user-info">
+                        <div class="sidebar-user-name" id="sidebarUserName">Usuário</div>
+                        <div class="sidebar-user-plan">Plano Starter</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="tool-container">
+            <header class="topbar" style="position:fixed; top:0; left:260px; right:0; z-index:90;">
+                <button class="topbar-btn" id="mobileMenuBtn" aria-label="Menu">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                </button>
+                <span style="font-weight:600;">Ferramenta: Criador de Posts</span>
+                <div class="topbar-actions" style="margin-left:auto;">
+                    <button class="topbar-btn" onclick="Tools.goToDashboard()" title="Voltar ao Dashboard">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                    </button>
+                </div>
+            </header>
+
+            <div class="tool-header" style="margin-top:64px;">
+                <h1>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-primary);"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                    Criador de Posts para Redes Sociais
+                </h1>
+            </div>
+
+            <div class="tool-layout">
+                <div class="tool-form-card">
+                    <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:20px;">Detalhes do Post</h2>
+                    <form id="postForm" novalidate>
+                        <div class="form-group">
+                            <label for="plataforma" class="form-label">Plataforma *</label>
+                            <select id="plataforma" required>
+                                <option value="">Selecione...</option>
+                                <option value="instagram">Instagram</option>
+                                <option value="facebook">Facebook</option>
+                                <option value="linkedin">LinkedIn</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tema" class="form-label">Tema do Post *</label>
+                            <input type="text" id="tema" placeholder="Ex: Lançamento de produto, dica, bastidores" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="produto" class="form-label">Produto/Serviço (se aplicável)</label>
+                            <input type="text" id="produto" placeholder="Ex: Curso de Marketing Digital">
+                        </div>
+                        <div class="form-group">
+                            <label for="publico" class="form-label">Público-alvo</label>
+                            <input type="text" id="publico" placeholder="Ex: Empreendedores iniciantes">
+                        </div>
+                        <div class="form-group">
+                            <label for="cta" class="form-label">Call-to-Action (CTA)</label>
+                            <input type="text" id="cta" placeholder="Ex: Clique no link da bio, Comente 'eu quero'">
+                        </div>
+                        <div class="form-group">
+                            <label for="hashtags" class="form-label">Hashtags sugeridas (separadas por vírgula)</label>
+                            <input type="text" id="hashtags" placeholder="Ex: marketing, vendas, dicas">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" id="gerarBtn">Gerar Post</button>
+                    </form>
+                </div>
+
+                <div class="tool-result-card" id="resultCard">
+                    <div class="tool-empty" id="emptyState">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/></svg>
+                        <p>Preencha os dados e gere seu post otimizado.</p>
+                    </div>
+                    <div class="tool-result-content" id="resultContent" style="display:none;"></div>
+                    <div class="tool-result-actions" id="resultActions" style="display:none;">
+                        <button class="btn btn-outline btn-sm" onclick="copiarResultado()">Copiar</button>
+                        <button class="btn btn-outline btn-sm" onclick="baixarTXT()">Baixar TXT</button>
+                        <button class="btn btn-outline btn-sm" onclick="novoPost()">Novo Post</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../assets/js/tools.js"></script>
+    <script>
+        Tools.init();
+
+        let resultadoGerado = '';
+
+        document.getElementById('postForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const plataforma = document.getElementById('plataforma').value;
+            const tema = document.getElementById('tema').value.trim();
+            const produto = document.getElementById('produto').value.trim();
+            const publico = document.getElementById('publico').value.trim();
+            const cta = document.getElementById('cta').value.trim();
+            const hashtagsInput = document.getElementById('hashtags').value.trim();
+
+            if (!plataforma || !tema) {
+                Tools.showToast('Selecione a plataforma e informe o tema.', 'error');
+                return;
+            }
+
+            const stopLoading = Tools.showLoading(document.getElementById('gerarBtn'));
+
+            setTimeout(() => {
+                const hashtags = hashtagsInput ? hashtagsInput.split(',').map(h => '#' + h.trim()).join(' ') : '';
+                let texto = '';
+
+                // Variação de conteúdo por plataforma
+                if (plataforma === 'instagram') {
+                    texto = `✨ POST PARA INSTAGRAM ✨\n\n`;
+                    texto += `📸 ${tema.toUpperCase()}\n\n`;
+                    texto += `Oi, pessoal! ${publico ? 'Este post é especialmente para ' + publico + '!' : ''}\n\n`;
+                    texto += `${produto ? 'Hoje vim falar sobre ' + produto + '. ' : ''}`;
+                    texto += `Aproveitem esta dica e não se esqueçam de salvar para consultar depois! 💾\n\n`;
+                    texto += cta ? `💬 ${cta}\n\n` : '💬 Comente aqui o que achou!\n\n';
+                    texto += `👇 Marque um amigo que precisa ver isso!\n\n`;
+                    texto += hashtags ? `${hashtags} #instagram #dicas #conteudo` : '#instagram #dicas #conteudo';
+                } else if (plataforma === 'facebook') {
+                    texto = `📘 POST PARA FACEBOOK\n\n`;
+                    texto += `${tema.toUpperCase()}\n\n`;
+                    texto += `${publico ? 'Pessoal, ' + publico + ', ' : 'Pessoal, '}`;
+                    texto += `${produto ? 'tenho algo importante sobre ' + produto + '. ' : 'confiram essa novidade! '}`;
+                    texto += `Leia até o final e compartilhe com quem precisa saber disso!\n\n`;
+                    texto += cta ? `👉 ${cta}\n\n` : '👉 Curta e compartilhe!\n\n';
+                    texto += hashtags ? hashtags : '#facebook #marketing';
+                } else if (plataforma === 'linkedin') {
+                    texto = `💼 POST PARA LINKEDIN\n\n`;
+                    texto += `${tema.toUpperCase()}\n\n`;
+                    texto += `${publico ? 'Para ' + publico + ', ' : 'Profissionais, '}`;
+                    texto += `${produto ? 'compartilho insights sobre ' + produto + '. ' : 'trago uma reflexão importante. '}`;
+                    texto += `Veja como isso impacta os negócios e vamos trocar ideias nos comentários.\n\n`;
+                    texto += cta ? `📩 ${cta}\n\n` : '📩 Conecte-se comigo para mais conteúdos.\n\n';
+                    texto += hashtags ? hashtags : '#linkedin #carreira #negocios';
+                }
+
+                resultadoGerado = texto;
+
+                document.getElementById('emptyState').style.display = 'none';
+                document.getElementById('resultContent').style.display = 'block';
+                document.getElementById('resultContent').textContent = resultadoGerado;
+                document.getElementById('resultActions').style.display = 'flex';
+
+                stopLoading();
+                Tools.showToast('Post gerado com sucesso!', 'success');
+            }, 1000);
+        });
+
+        function copiarResultado() { if (resultadoGerado) Tools.copyToClipboard(resultadoGerado); }
+        function baixarTXT() { if (resultadoGerado) Tools.downloadFile(resultadoGerado, 'post.txt'); }
+        function novoPost() {
+            document.getElementById('postForm').reset();
+            document.getElementById('emptyState').style.display = 'block';
+            document.getElementById('resultContent').style.display = 'none';
+            document.getElementById('resultActions').style.display = 'none';
+            resultadoGerado = '';
+        }
+    </script>
+</body>
+</html>
