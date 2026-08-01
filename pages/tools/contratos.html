@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Contratos - Atlas Business AI</title>
+    <meta name="description" content="Gere contratos personalizados em minutos">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../../assets/css/tools.css">
+</head>
+<body>
+    <div class="tool-page">
+        <div class="menu-overlay" id="menuOverlay"></div>
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="8" fill="url(#logo-grad)"/>
+                    <path d="M6 24L16 6L26 24H6Z" stroke="white" stroke-width="2" fill="none" stroke-linejoin="round"/>
+                    <circle cx="16" cy="20" r="2" fill="white"/>
+                    <defs><linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient></defs>
+                </svg>
+                <span class="logo-text">Atlas<span style="background: var(--color-primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Business</span>AI</span>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Principal</div>
+                    <a href="../dashboard.html" class="sidebar-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                        Dashboard
+                    </a>
+                    <a href="#" class="sidebar-link active">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+                        Contratos
+                    </a>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="sidebar-user">
+                    <div class="sidebar-avatar" id="sidebarAvatar">U</div>
+                    <div class="sidebar-user-info">
+                        <div class="sidebar-user-name" id="sidebarUserName">Usuário</div>
+                        <div class="sidebar-user-plan">Plano Starter</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="tool-container">
+            <header class="topbar" style="position:fixed; top:0; left:260px; right:0; z-index:90;">
+                <button class="topbar-btn" id="mobileMenuBtn" aria-label="Menu">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                </button>
+                <span style="font-weight:600;">Ferramenta: Gerador de Contratos</span>
+                <div class="topbar-actions" style="margin-left:auto;">
+                    <button class="topbar-btn" onclick="Tools.goToDashboard()" title="Voltar ao Dashboard">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                    </button>
+                </div>
+            </header>
+
+            <div class="tool-header" style="margin-top:64px;">
+                <h1>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-primary);"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+                    Gerador de Contratos
+                </h1>
+            </div>
+
+            <div class="tool-layout">
+                <div class="tool-form-card">
+                    <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:20px;">Dados do Contrato</h2>
+                    <form id="contratoForm" novalidate>
+                        <div class="form-group">
+                            <label for="tipoContrato" class="form-label">Tipo de Contrato *</label>
+                            <select id="tipoContrato" required>
+                                <option value="">Selecione...</option>
+                                <option value="prestacao">Prestação de Serviços</option>
+                                <option value="locacao">Locação de Equipamentos</option>
+                                <option value="parceria">Parceria Comercial</option>
+                                <option value="nda">Acordo de Confidencialidade (NDA)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contratante" class="form-label">Nome do Contratante *</label>
+                            <input type="text" id="contratante" placeholder="Empresa ou Pessoa" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contratado" class="form-label">Nome do Contratado *</label>
+                            <input type="text" id="contratado" placeholder="Sua Empresa" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="objeto" class="form-label">Objeto do Contrato *</label>
+                            <textarea id="objeto" placeholder="Descreva o serviço ou produto..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="valor" class="form-label">Valor (R$) *</label>
+                            <input type="number" id="valor" min="0" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="prazo" class="form-label">Prazo de Vigência</label>
+                            <input type="text" id="prazo" placeholder="Ex: 12 meses">
+                        </div>
+                        <div class="form-group">
+                            <label for="clausulas" class="form-label">Cláusulas Adicionais (separadas por vírgula)</label>
+                            <textarea id="clausulas" placeholder="Ex: Multa por atraso de 2%, foro da comarca..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" id="gerarBtn">Gerar Contrato</button>
+                    </form>
+                </div>
+
+                <div class="tool-result-card" id="resultCard">
+                    <div class="tool-empty" id="emptyState">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+                        <p>Preencha os dados e clique em "Gerar Contrato".</p>
+                    </div>
+                    <div class="tool-result-content" id="resultContent" style="display:none;"></div>
+                    <div class="tool-result-actions" id="resultActions" style="display:none;">
+                        <button class="btn btn-outline btn-sm" onclick="copiarResultado()">Copiar</button>
+                        <button class="btn btn-outline btn-sm" onclick="baixarTXT()">Baixar TXT</button>
+                        <button class="btn btn-outline btn-sm" onclick="novoContrato()">Novo Contrato</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../assets/js/tools.js"></script>
+    <script>
+        Tools.init();
+
+        let resultadoGerado = '';
+
+        document.getElementById('contratoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const tipo = document.getElementById('tipoContrato').value;
+            const contratante = document.getElementById('contratante').value.trim();
+            const contratado = document.getElementById('contratado').value.trim();
+            const objeto = document.getElementById('objeto').value.trim();
+            const valor = document.getElementById('valor').value.trim();
+            const prazo = document.getElementById('prazo').value.trim();
+            const clausulas = document.getElementById('clausulas').value.trim();
+
+            if (!tipo || !contratante || !contratado || !objeto || !valor) {
+                Tools.showToast('Preencha todos os campos obrigatórios.', 'error');
+                return;
+            }
+
+            const stopLoading = Tools.showLoading(document.getElementById('gerarBtn'));
+
+            setTimeout(() => {
+                const tiposNomes = {
+                    prestacao: 'Prestação de Serviços',
+                    locacao: 'Locação de Equipamentos',
+                    parceria: 'Parceria Comercial',
+                    nda: 'Acordo de Confidencialidade'
+                };
+                const dataAtual = new Date().toLocaleDateString('pt-BR');
+                let clausulasExtras = '';
+                if (clausulas) {
+                    const lista = clausulas.split(',').map(c => c.trim());
+                    clausulasExtras = '\nCLÁUSULAS ADICIONAIS:\n' + lista.map((c, i) => `Parágrafo ${i+1}: ${c}.`).join('\n');
+                }
+
+                resultadoGerado = `CONTRATO DE ${tiposNomes[tipo].toUpperCase()}\n\n
+Pelo presente instrumento, as partes:
+
+CONTRATANTE: ${contratante}
+CONTRATADO: ${contratado}
+
+Têm entre si justo e acertado o presente contrato, mediante as seguintes cláusulas:
+
+1. OBJETO: ${objeto}
+
+2. VALOR: R$ ${parseFloat(valor).toLocaleString('pt-BR', {minimumFractionDigits:2})}
+   ${prazo ? 'Prazo: ' + prazo : ''}
+
+3. OBRIGAÇÕES DAS PARTES: As partes se comprometem a cumprir fielmente o presente contrato, conforme legislação vigente.
+${clausulasExtras}
+
+Data: ${dataAtual}
+
+________________________________________
+${contratante}
+Contratante
+
+________________________________________
+${contratado}
+Contratado`;
+
+                document.getElementById('emptyState').style.display = 'none';
+                document.getElementById('resultContent').style.display = 'block';
+                document.getElementById('resultContent').textContent = resultadoGerado;
+                document.getElementById('resultActions').style.display = 'flex';
+
+                stopLoading();
+                Tools.showToast('Contrato gerado com sucesso!', 'success');
+            }, 1000);
+        });
+
+        function copiarResultado() { if (resultadoGerado) Tools.copyToClipboard(resultadoGerado); }
+        function baixarTXT() { if (resultadoGerado) Tools.downloadFile(resultadoGerado, 'contrato.txt'); }
+        function novoContrato() {
+            document.getElementById('contratoForm').reset();
+            document.getElementById('emptyState').style.display = 'block';
+            document.getElementById('resultContent').style.display = 'none';
+            document.getElementById('resultActions').style.display = 'none';
+            resultadoGerado = '';
+        }
+    </script>
+</body>
+</html>
