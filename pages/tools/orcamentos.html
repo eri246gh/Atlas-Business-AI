@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criador de Orçamentos - Atlas Business AI</title>
+    <meta name="description" content="Crie orçamentos detalhados com cálculos automáticos">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../../assets/css/tools.css">
+</head>
+<body>
+    <div class="tool-page">
+        <div class="menu-overlay" id="menuOverlay"></div>
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="8" fill="url(#logo-grad)"/>
+                    <path d="M6 24L16 6L26 24H6Z" stroke="white" stroke-width="2" fill="none" stroke-linejoin="round"/>
+                    <circle cx="16" cy="20" r="2" fill="white"/>
+                    <defs><linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient></defs>
+                </svg>
+                <span class="logo-text">Atlas<span style="background: var(--color-primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Business</span>AI</span>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Principal</div>
+                    <a href="../dashboard.html" class="sidebar-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                        Dashboard
+                    </a>
+                    <a href="#" class="sidebar-link active">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        Orçamentos
+                    </a>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="sidebar-user">
+                    <div class="sidebar-avatar" id="sidebarAvatar">U</div>
+                    <div class="sidebar-user-info">
+                        <div class="sidebar-user-name" id="sidebarUserName">Usuário</div>
+                        <div class="sidebar-user-plan">Plano Starter</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="tool-container">
+            <header class="topbar" style="position:fixed; top:0; left:260px; right:0; z-index:90;">
+                <button class="topbar-btn" id="mobileMenuBtn" aria-label="Menu">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                </button>
+                <span style="font-weight:600;">Ferramenta: Criador de Orçamentos</span>
+                <div class="topbar-actions" style="margin-left:auto;">
+                    <button class="topbar-btn" onclick="Tools.goToDashboard()" title="Voltar ao Dashboard">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                    </button>
+                </div>
+            </header>
+
+            <div class="tool-header" style="margin-top:64px;">
+                <h1>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-primary);"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    Criador de Orçamentos
+                </h1>
+            </div>
+
+            <div class="tool-layout">
+                <!-- Formulário de itens -->
+                <div class="tool-form-card">
+                    <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:16px;">Dados da Empresa</h2>
+                    <div class="form-group">
+                        <label for="nomeEmpresa" class="form-label">Nome da Empresa *</label>
+                        <input type="text" id="nomeEmpresa" placeholder="Ex: Atlas Serviços" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nomeCliente" class="form-label">Nome do Cliente *</label>
+                        <input type="text" id="nomeCliente" placeholder="Ex: João Silva" required>
+                    </div>
+                    <h2 style="font-size:1.1rem;font-weight:700;margin:24px 0 16px;">Itens do Orçamento</h2>
+                    <div id="itemsContainer">
+                        <!-- Itens serão inseridos dinamicamente -->
+                    </div>
+                    <button type="button" class="btn btn-outline btn-sm" onclick="adicionarItem()" style="margin-bottom:16px;">+ Adicionar Item</button>
+                    <div class="form-group">
+                        <label for="desconto" class="form-label">Desconto (%)</label>
+                        <input type="number" id="desconto" placeholder="0" min="0" max="100" step="0.1" value="0">
+                    </div>
+                    <button type="button" class="btn btn-primary btn-block" id="gerarBtn" onclick="gerarOrcamento()">Gerar Orçamento</button>
+                </div>
+
+                <!-- Resultado -->
+                <div class="tool-result-card" id="resultCard">
+                    <div class="tool-empty" id="emptyState">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="18" rx="2"/></svg>
+                        <p>Adicione itens e clique em "Gerar Orçamento".</p>
+                    </div>
+                    <div class="tool-result-content" id="resultContent" style="display:none;"></div>
+                    <div class="tool-result-actions" id="resultActions" style="display:none;">
+                        <button class="btn btn-outline btn-sm" onclick="copiarResultado()">Copiar</button>
+                        <button class="btn btn-outline btn-sm" onclick="baixarTXT()">Baixar TXT</button>
+                        <button class="btn btn-outline btn-sm" onclick="novaOrcamento()">Novo Orçamento</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../assets/js/tools.js"></script>
+    <script>
+        Tools.init();
+
+        let itemCount = 0;
+        let resultadoGerado = '';
+
+        // Adiciona um item ao formulário
+        function adicionarItem() {
+            itemCount++;
+            const container = document.getElementById('itemsContainer');
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'form-group';
+            itemDiv.style.border = '1px solid var(--color-border)';
+            itemDiv.style.borderRadius = 'var(--radius-md)';
+            itemDiv.style.padding = '12px';
+            itemDiv.style.marginBottom = '12px';
+            itemDiv.innerHTML = `
+                <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                    <div style="flex:1; min-width:150px;">
+                        <label class="form-label">Descrição *</label>
+                        <input type="text" class="item-desc" placeholder="Serviço/Produto" required>
+                    </div>
+                    <div style="width:100px;">
+                        <label class="form-label">Qtd *</label>
+                        <input type="number" class="item-qtd" min="1" value="1" required>
+                    </div>
+                    <div style="width:120px;">
+                        <label class="form-label">Valor Unit. *</label>
+                        <input type="number" class="item-valor" min="0" step="0.01" placeholder="0.00" required>
+                    </div>
+                    <div style="align-self:flex-end;">
+                        <button type="button" class="btn btn-ghost btn-sm" style="color:var(--color-error);" onclick="removerItem(this)">Remover</button>
+                    </div>
+                </div>
+            `;
+            container.appendChild(itemDiv);
+        }
+
+        function removerItem(btn) {
+            btn.closest('.form-group').remove();
+        }
+
+        function calcularTotais() {
+            const descs = document.querySelectorAll('.item-desc');
+            const qtds = document.querySelectorAll('.item-qtd');
+            const valores = document.querySelectorAll('.item-valor');
+            const descontoPercent = parseFloat(document.getElementById('desconto').value) || 0;
+
+            let subtotal = 0;
+            const itens = [];
+
+            for (let i = 0; i < descs.length; i++) {
+                const desc = descs[i].value.trim();
+                const qtd = parseInt(qtds[i].value) || 0;
+                const valor = parseFloat(valores[i].value) || 0;
+                if (desc && qtd > 0 && valor > 0) {
+                    const totalItem = qtd * valor;
+                    subtotal += totalItem;
+                    itens.push({ desc, qtd, valor, totalItem });
+                }
+            }
+
+            const desconto = (subtotal * descontoPercent) / 100;
+            const total = subtotal - desconto;
+
+            return { itens, subtotal, descontoPercent, desconto, total };
+        }
+
+        function gerarOrcamento() {
+            const nomeEmpresa = document.getElementById('nomeEmpresa').value.trim();
+            const nomeCliente = document.getElementById('nomeCliente').value.trim();
+
+            if (!nomeEmpresa || !nomeCliente) {
+                Tools.showToast('Preencha os dados da empresa e cliente.', 'error');
+                return;
+            }
+
+            const { itens, subtotal, descontoPercent, desconto, total } = calcularTotais();
+
+            if (itens.length === 0) {
+                Tools.showToast('Adicione pelo menos um item válido.', 'error');
+                return;
+            }
+
+            const stopLoading = Tools.showLoading(document.getElementById('gerarBtn'));
+
+            setTimeout(() => {
+                const dataAtual = new Date().toLocaleDateString('pt-BR');
+                let texto = `ORÇAMENTO\n\nEmpresa: ${nomeEmpresa}\nCliente: ${nomeCliente}\nData: ${dataAtual}\n\n`;
+                texto += 'ITENS:\n';
+                texto += '------------------------------------------------------\n';
+                texto += 'Descrição                  Qtd   Unit.(R$)   Total(R$)\n';
+                texto += '------------------------------------------------------\n';
+
+                itens.forEach(item => {
+                    const desc = item.desc.padEnd(25).substring(0, 25);
+                    const qtd = item.qtd.toString().padStart(4);
+                    const valor = item.valor.toFixed(2).padStart(10);
+                    const totalItem = item.totalItem.toFixed(2).padStart(10);
+                    texto += `${desc} ${qtd}  ${valor}  ${totalItem}\n`;
+                });
+
+                texto += '------------------------------------------------------\n';
+                texto += `Subtotal: R$ ${subtotal.toFixed(2).padStart(25)}\n`;
+                if (descontoPercent > 0) {
+                    texto += `Desconto (${descontoPercent}%): R$ ${desconto.toFixed(2).padStart(21)}\n`;
+                }
+                texto += `Total: R$ ${total.toFixed(2).padStart(27)}\n`;
+
+                resultadoGerado = texto;
+
+                document.getElementById('emptyState').style.display = 'none';
+                document.getElementById('resultContent').style.display = 'block';
+                document.getElementById('resultContent').textContent = resultadoGerado;
+                document.getElementById('resultActions').style.display = 'flex';
+
+                stopLoading();
+                Tools.showToast('Orçamento gerado!', 'success');
+            }, 800);
+        }
+
+        function copiarResultado() { if (resultadoGerado) Tools.copyToClipboard(resultadoGerado); }
+        function baixarTXT() { if (resultadoGerado) Tools.downloadFile(resultadoGerado, 'orcamento.txt'); }
+        function novaOrcamento() {
+            document.getElementById('nomeEmpresa').value = '';
+            document.getElementById('nomeCliente').value = '';
+            document.getElementById('desconto').value = '0';
+            document.getElementById('itemsContainer').innerHTML = '';
+            document.getElementById('emptyState').style.display = 'block';
+            document.getElementById('resultContent').style.display = 'none';
+            document.getElementById('resultActions').style.display = 'none';
+            resultadoGerado = '';
+        }
+
+        // Inicia com um item padrão
+        adicionarItem();
+    </script>
+</body>
+</html>
