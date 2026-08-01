@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Respostas Inteligentes - Atlas Business AI</title>
+    <meta name="description" content="Responda clientes via WhatsApp, e-mail, chat, suporte e cobrança">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../../assets/css/tools.css">
+</head>
+<body>
+    <div class="tool-page">
+        <div class="menu-overlay" id="menuOverlay"></div>
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="8" fill="url(#logo-grad)"/>
+                    <path d="M6 24L16 6L26 24H6Z" stroke="white" stroke-width="2" fill="none" stroke-linejoin="round"/>
+                    <circle cx="16" cy="20" r="2" fill="white"/>
+                    <defs><linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient></defs>
+                </svg>
+                <span class="logo-text">Atlas<span style="background: var(--color-primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Business</span>AI</span>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Principal</div>
+                    <a href="../dashboard.html" class="sidebar-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                        Dashboard
+                    </a>
+                    <a href="#" class="sidebar-link active">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        Respostas
+                    </a>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="sidebar-user">
+                    <div class="sidebar-avatar" id="sidebarAvatar">U</div>
+                    <div class="sidebar-user-info">
+                        <div class="sidebar-user-name" id="sidebarUserName">Usuário</div>
+                        <div class="sidebar-user-plan">Plano Starter</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="tool-container">
+            <header class="topbar" style="position:fixed; top:0; left:260px; right:0; z-index:90;">
+                <button class="topbar-btn" id="mobileMenuBtn" aria-label="Menu">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                </button>
+                <span style="font-weight:600;">Ferramenta: Respostas Inteligentes</span>
+                <div class="topbar-actions" style="margin-left:auto;">
+                    <button class="topbar-btn" onclick="Tools.goToDashboard()" title="Voltar ao Dashboard">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                    </button>
+                </div>
+            </header>
+
+            <div class="tool-header" style="margin-top:64px;">
+                <h1>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-primary);"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    Respostas Inteligentes
+                </h1>
+            </div>
+
+            <div class="tool-layout">
+                <div class="tool-form-card">
+                    <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:20px;">Contexto da Resposta</h2>
+                    <form id="respostaForm" novalidate>
+                        <div class="form-group">
+                            <label for="canal" class="form-label">Canal *</label>
+                            <select id="canal" required>
+                                <option value="">Selecione...</option>
+                                <option value="whatsapp">WhatsApp</option>
+                                <option value="email">E-mail</option>
+                                <option value="chat">Chat</option>
+                                <option value="suporte">Suporte</option>
+                                <option value="cobranca">Cobrança</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cliente" class="form-label">Nome do Cliente</label>
+                            <input type="text" id="cliente" placeholder="Ex: Maria">
+                        </div>
+                        <div class="form-group">
+                            <label for="assunto" class="form-label">Assunto/Motivo *</label>
+                            <input type="text" id="assunto" placeholder="Ex: Atraso na entrega" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="detalhes" class="form-label">Detalhes Adicionais</label>
+                            <textarea id="detalhes" placeholder="Ex: Pedido #1234, entrega prevista para ontem"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="tom" class="form-label">Tom da Resposta</label>
+                            <select id="tom">
+                                <option value="profissional">Profissional</option>
+                                <option value="amigavel">Amigável</option>
+                                <option value="formal">Formal</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" id="gerarBtn">Gerar Resposta</button>
+                    </form>
+                </div>
+
+                <div class="tool-result-card" id="resultCard">
+                    <div class="tool-empty" id="emptyState">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        <p>Preencha os dados para obter uma resposta inteligente.</p>
+                    </div>
+                    <div class="tool-result-content" id="resultContent" style="display:none;"></div>
+                    <div class="tool-result-actions" id="resultActions" style="display:none;">
+                        <button class="btn btn-outline btn-sm" onclick="copiarResultado()">Copiar</button>
+                        <button class="btn btn-outline btn-sm" onclick="baixarTXT()">Baixar TXT</button>
+                        <button class="btn btn-outline btn-sm" onclick="novaResposta()">Nova Resposta</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../assets/js/tools.js"></script>
+    <script>
+        Tools.init();
+
+        let resultadoGerado = '';
+
+        document.getElementById('respostaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const canal = document.getElementById('canal').value;
+            const cliente = document.getElementById('cliente').value.trim() || 'Cliente';
+            const assunto = document.getElementById('assunto').value.trim();
+            const detalhes = document.getElementById('detalhes').value.trim();
+            const tom = document.getElementById('tom').value;
+
+            if (!canal || !assunto) {
+                Tools.showToast('Selecione o canal e informe o assunto.', 'error');
+                return;
+            }
+
+            const stopLoading = Tools.showLoading(document.getElementById('gerarBtn'));
+
+            setTimeout(() => {
+                let texto = '';
+                const saudacao = tom === 'formal' ? 'Prezado(a)' : (tom === 'amigavel' ? 'Olá' : 'Prezado(a)');
+
+                if (canal === 'whatsapp') {
+                    texto = `📱 RESPOSTA WHATSAPP\n\n`;
+                    texto += `${saudacao} ${cliente}!\n\n`;
+                    texto += `Sobre "${assunto}", ${detalhes ? detalhes : 'estamos verificando.'}\n`;
+                    texto += tom === 'amigavel' ? '😉 Já estamos resolvendo! Qualquer dúvida, é só chamar.' : 'Em breve retornaremos com uma solução.';
+                } else if (canal === 'email') {
+                    texto = `📧 RESPOSTA POR E-MAIL\n\n`;
+                    texto += `Assunto: ${assunto}\n\n`;
+                    texto += `${saudacao} ${cliente},\n\n`;
+                    texto += `Recebemos sua solicitação sobre "${assunto}".\n`;
+                    texto += detalhes ? `Detalhes: ${detalhes}\n\n` : '\n';
+                    texto += `Nossa equipe já está cuidando disso e entraremos em contato em breve.\n\n`;
+                    texto += `Atenciosamente,\nEquipe Atlas`;
+                } else if (canal === 'chat') {
+                    texto = `💬 RESPOSTA CHAT\n\n`;
+                    texto += `${saudacao} ${cliente}! 😊\n\n`;
+                    texto += `Entendi que precisa de ajuda com "${assunto}".\n`;
+                    texto += `Vou verificar rapidamente e já te retorno. Aguarde um instante!`;
+                } else if (canal === 'suporte') {
+                    texto = `🎫 RESPOSTA SUPORTE\n\n`;
+                    texto += `Olá ${cliente},\n\n`;
+                    texto += `Recebemos seu chamado sobre "${assunto}".\n`;
+                    texto += detalhes ? `Descrição: ${detalhes}\n` : '';
+                    texto += `Protocolo: #${Math.floor(Math.random()*10000)}\n\n`;
+                    texto += `Nossa equipe de suporte analisará e responderá em até 24h úteis.\nObrigado pela paciência!`;
+                } else if (canal === 'cobranca') {
+                    texto = `💰 RESPOSTA COBRANÇA\n\n`;
+                    texto += `${saudacao} ${cliente},\n\n`;
+                    texto += `Verificamos que há uma pendência referente a "${assunto}".\n`;
+                    texto += detalhes ? `Detalhes: ${detalhes}\n` : '';
+                    texto += `Pedimos a gentileza de regularizar o mais breve possível.\n`;
+                    texto += `Caso já tenha efetuado o pagamento, desconsidere esta mensagem.\n\n`;
+                    texto += `Estamos à disposição para negociação.\nObrigado.`;
+                }
+
+                resultadoGerado = texto;
+
+                document.getElementById('emptyState').style.display = 'none';
+                document.getElementById('resultContent').style.display = 'block';
+                document.getElementById('resultContent').textContent = resultadoGerado;
+                document.getElementById('resultActions').style.display = 'flex';
+
+                stopLoading();
+                Tools.showToast('Resposta gerada!', 'success');
+            }, 1000);
+        });
+
+        function copiarResultado() { if (resultadoGerado) Tools.copyToClipboard(resultadoGerado); }
+        function baixarTXT() { if (resultadoGerado) Tools.downloadFile(resultadoGerado, 'resposta.txt'); }
+        function novaResposta() {
+            document.getElementById('respostaForm').reset();
+            document.getElementById('emptyState').style.display = 'block';
+            document.getElementById('resultContent').style.display = 'none';
+            document.getElementById('resultActions').style.display = 'none';
+            resultadoGerado = '';
+        }
+    </script>
+</body>
+</html>
